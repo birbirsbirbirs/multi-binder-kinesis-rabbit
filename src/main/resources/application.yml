@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: multi-binder-kinesis-rabbit
+  cloud:
+    aws:
+      endpoint: http://localhost:4566
+      region:
+        static: us-east-1
+      credentials:
+        access-key: noop
+        secret-key: noop
+    stream:
+      bindings:
+        kinesisConsumerOne-in-0:
+          destination: hero-kinesis-1
+          binder: kinesis
+        rabbitConsumerOne-in-0:
+          destination: hero-rabbit-1
+          binder: rabbit
+    function:
+      definition: kinesisConsumerOne;rabbitConsumerOne
